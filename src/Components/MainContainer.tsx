@@ -3,12 +3,8 @@ import SplashScreen from './SplashScreen/SplashScreen';
 import '../Styles/styles.css'
 import Desktop from './Desktop/Desktop';
 
-import { createGlobalStyle, ThemeProvider } from "styled-components";
-import { reset, themes } from "react95";
-
-const ResetStyles = createGlobalStyle`
-    ${reset}
-`;
+import { ThemeProvider } from '@react95/core';
+import '@react95/icons/icons.css';
 
 interface Props {
     
@@ -16,12 +12,12 @@ interface Props {
 
 const MainContainer: React.FC<Props> = () => {
 
-    const [showSplashScreen, setshowSplashScreen] = useState(true);
+    const [showSplashScreen, setShowSplashScreen] = useState(true);
 
 
     useEffect(() => {
         const splashTimeout = setTimeout(() => {
-            setshowSplashScreen(false);
+            setShowSplashScreen(false);
         }, 2000)
         return () => {
             clearTimeout(splashTimeout);
@@ -30,8 +26,7 @@ const MainContainer: React.FC<Props> = () => {
 
     return (
         <div className="mainContainer">
-            <ResetStyles />
-            <ThemeProvider theme={themes.default}>
+            <ThemeProvider>
                 <SplashScreen show={showSplashScreen} />
                 {!showSplashScreen &&
                     <Desktop />

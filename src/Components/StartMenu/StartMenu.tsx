@@ -1,10 +1,11 @@
 import React from 'react'
 
-import { List, ListItem, Divider, Button } from 'react95';
+import { List, TaskBar } from '@react95/core';
 import styled from 'styled-components';
+import { ReaderClosed, WindowsExplorer } from '@react95/icons';
 
 interface Props {
-    
+
 }
 
 const LogoIcon = styled.span`
@@ -15,33 +16,24 @@ const LogoIcon = styled.span`
 `;
 
 const StartMenu: React.FC<Props> = () => {
-    const [open, setOpen] = React.useState(false);
-
-    function handleClick() {
-        setOpen(!open);
-    }
-
-    function handleClose() {
-        setOpen(false);
-    }
 
     return (
-        <div style={{ position: 'relative', display: 'inline-block' }}>
-            {open && (
-                <List horizontalAlign="left" verticalAlign="top" open={open} onClick={handleClose}>
-                    <ListItem>🖥️ Desktop</ListItem>
-                    <ListItem>👯‍♀️‍ Where are you, ZEDD</ListItem>
-                    <ListItem>💸 Lottery</ListItem>
-                    <ListItem>🧾 Credits</ListItem>
-                    <Divider />
-                    <ListItem disabled>🔙 Logout</ListItem>
+        <TaskBar
+            list={
+                <List>
+                    <List.Item
+                        icon={<ReaderClosed variant="32x32_4" />}
+                    >
+                        Local Disk (C:)
+                    </List.Item>
+                    <List.Item
+                        icon={<WindowsExplorer variant="32x32_4" />}
+                    >
+                        Windows Explorer
+                    </List.Item>
                 </List>
-            )}
-            <Button onClick={handleClick} active={open} style={{ fontWeight: 'bold' }}>
-                <LogoIcon>🍏</LogoIcon>
-                Start
-            </Button>
-        </div>
+            }
+        />
     );
 }
 
